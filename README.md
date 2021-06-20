@@ -1,6 +1,6 @@
 # LibF
 
-LibF is a foundational framework for Python to make programming simpler and faster. It consists of multiple libraries
+LibF is a foundational framework for Python to make programming simpler and faster. It consists of multiple libraries.
 
 ### Features:
  - `GPA: General Python Async` = A library for simple async code with multithreading support
@@ -10,5 +10,5 @@ LibF is a foundational framework for Python to make programming simpler and fast
 
 
 ## Notice:  
-Part of the project's code is based on [CircuitSacul's](https://github.com/CircuitSacul) [SocketGame library](https://github.com/CircuitSacul/SocketGame)
-The SocketGame license is included in the project
+Part of the project's code is based on [CircuitSacul's](https://github.com/CircuitSacul) [SocketGame library](https://github.com/CircuitSacul/SocketGame).
+The SocketGame license is included in the project.
