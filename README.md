@@ -5,6 +5,7 @@ LibF is a foundational framework for Python to make programming simpler and fast
 ### Features:
  - GPA: General Python Async = A library for simple async code with multithreading support
  - Frac: Fractions = A full-fledged fraction class
+ - HOF: Higher Order Functions = A library of basic higher order functions
 
 
 ## Notice:  
