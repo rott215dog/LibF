@@ -7,4 +7,4 @@ LibF is a foundational framework for Python to make programming simpler and fast
 
 
 ## Notice:  
-Part of the low-level code is based on [CircuitSacul's](https://github.com/CircuitSacul) [SocketGame library](https://github.com/CircuitSacul/SocketGame)
+Part of the project's code is based on [CircuitSacul's](https://github.com/CircuitSacul) [SocketGame library](https://github.com/CircuitSacul/SocketGame)
