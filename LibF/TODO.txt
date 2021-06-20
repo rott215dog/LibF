@@ -1,0 +1,5 @@
+Write GPA docs, requirements, setup.py
+
+Future libraries / features:
+    - Pub/Sub
+    - Enumerations / Switch / Case
