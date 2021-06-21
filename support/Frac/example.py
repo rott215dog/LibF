@@ -1,4 +1,4 @@
-import LibF.Frac
+from LibF import Frac
 
 print('A Few Fractions')
 f1 = Frac.frac(12, 15) # Reduce to 4/5
