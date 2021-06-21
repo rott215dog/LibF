@@ -1,5 +1,5 @@
 #TODO
-Write GPA docs, PS, PS support, PS docs
+Write GPA docs, PS, PS support, PS docs, make wiki
 
 Future libraries / features:
     - Enumerations / Switch / Case
