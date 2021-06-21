@@ -8,7 +8,7 @@ setup(
   author = 'Deac',                   # Type in your name
   author_email = 'N/A',      # Type in your E-Mail
   url = 'https://github.com/rott215dog/LibF',   # Provide either the link to your github or to your website
-  download_url = 'https://github.com/rott215dog/LibF/archive/refs/tags/v0.1.tar.gz',    # I explain this later on
+  download_url = 'https://github.com/rott215dog/LibF/archive/refs/tags/v0.2.tar.gz',    # I explain this later on
   keywords = ['Async', 'Foundation'],   # Keywords that define your package best
   install_requires=[            # I get to this in a second
           'asyncio',
