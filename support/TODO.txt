@@ -1,5 +1,5 @@
 #TODO
-Write GPA docs, requirements, setup.py
+Write GPA docs
 
 Future libraries / features:
     - Pub/Sub
