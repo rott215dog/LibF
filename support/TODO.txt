@@ -1,6 +1,5 @@
 #TODO
-Write GPA docs
+Write GPA docs, PS, PS support
 
 Future libraries / features:
-    - Pub/Sub
     - Enumerations / Switch / Case
