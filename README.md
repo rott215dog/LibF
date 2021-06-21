@@ -8,6 +8,9 @@ LibF is a foundational framework for Python to make programming simpler and fast
  - `HOF: Higher Order Functions` = A library of basic higher order functions
  - `Sort: Sorting` = A library with a few sorting algorithms
 
+### Install:
+ - `pip install LibF`
+
 
 ## Notice:  
 Part of the project's code is based on [CircuitSacul's](https://github.com/CircuitSacul) [SocketGame library](https://github.com/CircuitSacul/SocketGame).
