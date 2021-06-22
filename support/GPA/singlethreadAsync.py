@@ -22,6 +22,3 @@ async def anotherOne():
 
 #Begin execution
 Main.run()
-
-#Cease execution
-Main.stop()

@@ -60,26 +60,6 @@ class Queue(Frame):
         while True:
             await asyncio.sleep(0)
 
-Main = Queue()
-
-#Single Thread Concurrency
-
-#"@Main.task" adds the function below to a tasks list
-@Main.task
-async def helloWorld():
-    for i in range(3):
-        print("Hello World!")
-        await asyncio.sleep(0.1)
-
-@Main.task
-async def anotherOne():
-    for i in range(3):
-        print("I'm running concurrently!")
-        await asyncio.sleep(0.1)
-
-#Begin execution
-Main.run()
-
 
 class MTManager:
     def __init__(self):
