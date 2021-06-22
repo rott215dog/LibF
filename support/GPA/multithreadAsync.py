@@ -25,7 +25,7 @@ async def anotherOne():
 async def pythonista():
     for i in range(3):
         print("We love Python!")
-        await asyncio.sleep(0.1)
+        await asyncio.sleep(0.3)
 
 @MAN.side.task
 async def anotherThread():
