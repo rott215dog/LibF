@@ -12,7 +12,7 @@ from LibF.GPA import *
 async def helloWorld():
     for i in range(3):
         print("Hello World!")
-        await asyncio.sleep(0.1)
+        await asyncio.sleep(0.2)
 
 @MAN.main.task
 async def anotherOne():
