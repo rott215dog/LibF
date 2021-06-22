@@ -1,5 +1,6 @@
 import asyncio
 from threading import Thread
+from multiprocessing import Process
 from time import sleep
 from LibF.GPA import *
 
@@ -20,7 +21,7 @@ async def anotherOne():
         await asyncio.sleep(0.1)
 
 @MAN.side.task
-#MAN is a built in manager for having up to 4 concurrent threads
+#MAN is a built in manager for having up to 4 concurrent threads (class 'MTManager')
 async def pythonista():
     for i in range(3):
         print("We love Python!")

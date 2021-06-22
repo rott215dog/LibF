@@ -40,7 +40,7 @@ class Queue(Frame):
         try:
             self.loop.run_until_complete(self.start())
         except KeyboardInterrupt:
-            raise KeyboardInterrupt
+            pass
         finally:
             self.loop.run_until_complete(self.stop())
 
@@ -54,6 +54,8 @@ class Queue(Frame):
 
     async def main_loop(self) -> None:
         while True:
+            if self._running_tasks == []:
+                break
             await asyncio.sleep(0)
 
 
