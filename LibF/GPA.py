@@ -35,7 +35,6 @@ class Frame:
             if not t.cancelled():
                 t.cancel()
 
-
 class Queue(Frame):
     def __init__(self, *args: Any, **kwargs: Any) -> None:
         super().__init__(*args, **kwargs)
