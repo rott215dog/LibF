@@ -22,9 +22,13 @@ class Frame:
         self.tasks.append(func)
 
     async def start_tasks(self) -> None:
-        for func in self.tasks:
+        runem = []
+        for r in self.tasks:
+            runem.append(r())
+        await asyncio.gather(*runem)
+        '''for func in self.tasks:
             t = self.loop.create_task(func())
-            self._running_tasks.append(t)
+            self._running_tasks.append(t)'''
 
     def stop_tasks(self) -> None:
         for t in self._running_tasks:
@@ -50,11 +54,31 @@ class Queue(Frame):
 
     async def start(self) -> None:
         await self.start_tasks()
-        await self.main_loop()
+        #await self.main_loop()
 
     async def main_loop(self) -> None:
         while True:
             await asyncio.sleep(0)
+
+Main = Queue()
+
+#Single Thread Concurrency
+
+#"@Main.task" adds the function below to a tasks list
+@Main.task
+async def helloWorld():
+    for i in range(3):
+        print("Hello World!")
+        await asyncio.sleep(0.1)
+
+@Main.task
+async def anotherOne():
+    for i in range(3):
+        print("I'm running concurrently!")
+        await asyncio.sleep(0.1)
+
+#Begin execution
+Main.run()
 
 
 class MTManager:
