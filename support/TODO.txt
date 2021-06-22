@@ -1,5 +1,5 @@
 #TODO
-Write GPA docs, PS, PS support, PS docs, make wiki, add args support to GPA async queue
+Write GPA docs, PS, PS support, PS docs, make wiki, add args support to GPA async queue, add support to 'return' values on queue cease
 
 Future libraries / features:
     - Enumerations / Switch / Case
