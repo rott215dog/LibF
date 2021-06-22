@@ -54,8 +54,6 @@ class Queue(Frame):
 
     async def main_loop(self) -> None:
         while True:
-            if self._running_tasks == []:
-                break
             await asyncio.sleep(0)
 
 
