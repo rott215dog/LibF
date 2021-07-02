@@ -63,16 +63,12 @@ class Queue(Frame):
             self.loop.run_until_complete(self.start())
         except KeyboardInterrupt:
             pass
-        finally:
-            self.loop.run_until_complete(self.stop())
 
     def argrun(self) -> None:
         try:
             self.loop.run_until_complete(self.argstart())
         except KeyboardInterrupt:
             pass
-        finally:
-            self.loop.run_until_complete(self.stop())
     
     async def stop(self) -> None:
         self.stop_tasks()
@@ -130,8 +126,11 @@ class SyncQueue:
   def __repr__(self):
     return str(self.tasks)
 
+def Kill(q):
+    asyncio.run(q.stop())
+
 #My reference
-'''Main = Queue()
+Main = Queue()
 
 @Main.event([4,5,6])
 async def timer(a):
@@ -161,4 +160,20 @@ async def anotherOne():
         print("I'm running concurrently!")
         await asyncio.sleep(0.1)
 
-Main.argrun()'''
+Main.argrun()
+
+@Main.task
+async def helloWorld2():
+    for i in range(3):
+        print("Hello World! 2")
+        await asyncio.sleep(0.1)
+
+@Main.task
+async def anotherOne2():
+    for i in range(3):
+        print("I'm running concurrently! 2")
+        await asyncio.sleep(0.1)
+
+Main.run()
+
+Kill(Main)

@@ -1,5 +1,5 @@
 #TODO
-Write GPA docs, PS, PS support, PS docs, maybe add return val support for queues
+Write GPA docs, PS, PS support, PS docs, maybe add return val support for queues, allow argrun/run to run after each other (disable stop for this), create way to run arg tasks and non-arg tasks
 
 Future libraries / features:
     - Enumerations / Switch / Case
