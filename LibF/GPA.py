@@ -30,7 +30,6 @@ class Frame:
             t = self.loop.create_task(func())
             self._running_tasks.append(t)'''
 
-
     def stop_tasks(self) -> None:
         for t in self._running_tasks:
             if not t.cancelled():
