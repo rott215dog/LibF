@@ -16,6 +16,10 @@ class Frame:
 
         self.tasks: List[Callable[[], Awaitable[None]]] = []
 
+        self.argtasks: Dict[ str, List[Callable[[], Awaitable[None]]] ] = {}
+
+        self.argus: Dict[ str, List() ] = {}
+
         self._running_tasks: List[asyncio.Future[Any]] = []
 
     def task(self, func: Callable[[], Awaitable[None]]) -> None:
@@ -29,6 +33,27 @@ class Frame:
         '''for func in self.tasks:
             t = self.loop.create_task(func())
             self._running_tasks.append(t)'''
+
+    def event(self, args) -> Callable[[Callable[[], Awaitable[None]]], Callable[[], Awaitable[None]]]:
+        def wrapper(func: Callable[[], Awaitable[None]]) -> Callable[[], Awaitable[None]]:
+            #func.__name__
+
+            self.argtasks[func.__name__] = func
+            self.argus[func.__name__] = args
+
+            return func
+
+        return wrapper
+
+    async def arg_start(self, func: Callable[[], Awaitable[None]]):
+        runim = []
+        for i in self.argtasks:
+            if self.argus[i] != []:
+                for p in self.argus[i]:
+                    runim.append(self.argtasks[i](p))
+            else:
+                runim.append(self.argtasks[i]())
+        await asyncio.gather(*runim)
 
     def stop_tasks(self) -> None:
         for t in self._running_tasks:
@@ -46,6 +71,14 @@ class Queue(Frame):
             pass
         finally:
             self.loop.run_until_complete(self.stop())
+
+    def argrun(self):
+        try:
+            self.loop.run_until_complete(self.argstart())
+        except KeyboardInterrupt:
+            pass
+        finally:
+            self.loop.run_until_complete(self.stop())
     
     async def stop(self) -> None:
         self.stop_tasks()
@@ -54,6 +87,9 @@ class Queue(Frame):
     async def start(self) -> None:
         await self.start_tasks()
         #await self.main_loop()
+    
+    async def argstart(self):
+        await self.arg_start()
 
     async def main_loop(self) -> None:
         while True:
@@ -99,3 +135,26 @@ class SyncQueue:
 
   def __repr__(self):
     return str(self.tasks)
+
+'''Main = Queue()
+
+@Main.event([1,2,3])
+async def printer(a):
+    print(a)
+    if a == 3:
+        raise ValueError
+    if a == 2:
+        import os
+        os.system('open -a Spotify')
+
+@Main.event([])
+async def printee():
+    print('Hello World!')
+
+Main.argrun()
+
+@Main.task
+async def helloWorld():
+    print('HELLO WORLD')
+
+Main.run()'''
