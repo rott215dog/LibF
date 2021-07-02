@@ -16,7 +16,7 @@ class Frame:
 
         self.tasks: List[Callable[[], Awaitable[None]]] = []
 
-        self.argtasks: Dict[ str, List[Callable[[], Awaitable[None]]] ] = {}
+        self.argtasks: Dict[ str, Any ] = {}
 
         self.argus: Dict[ str, List() ] = {}
 
@@ -25,27 +25,21 @@ class Frame:
     def task(self, func: Callable[[], Awaitable[None]]) -> None:
         self.tasks.append(func)
 
+    def event(self, args) -> Callable[[Callable[[], Awaitable[None]]], Callable[[], Awaitable[None]]]:
+        def wrapper(func: Callable[[], Awaitable[None]]) -> Callable[[], Awaitable[None]]:
+            #func.__name__
+            self.argtasks[func.__name__] = func
+            self.argus[func.__name__] = args
+            return func
+        return wrapper
+
     async def start_tasks(self) -> None:
         runem = []
         for r in self.tasks:
             runem.append(r())
         await asyncio.gather(*runem)
-        '''for func in self.tasks:
-            t = self.loop.create_task(func())
-            self._running_tasks.append(t)'''
 
-    def event(self, args) -> Callable[[Callable[[], Awaitable[None]]], Callable[[], Awaitable[None]]]:
-        def wrapper(func: Callable[[], Awaitable[None]]) -> Callable[[], Awaitable[None]]:
-            #func.__name__
-
-            self.argtasks[func.__name__] = func
-            self.argus[func.__name__] = args
-
-            return func
-
-        return wrapper
-
-    async def arg_start(self, func: Callable[[], Awaitable[None]]):
+    async def arg_start(self) -> None:
         runim = []
         for i in self.argtasks:
             if self.argus[i] != []:
@@ -72,7 +66,7 @@ class Queue(Frame):
         finally:
             self.loop.run_until_complete(self.stop())
 
-    def argrun(self):
+    def argrun(self) -> None:
         try:
             self.loop.run_until_complete(self.argstart())
         except KeyboardInterrupt:
@@ -88,7 +82,7 @@ class Queue(Frame):
         await self.start_tasks()
         #await self.main_loop()
     
-    async def argstart(self):
+    async def argstart(self) -> None:
         await self.arg_start()
 
     async def main_loop(self) -> None:
@@ -136,25 +130,35 @@ class SyncQueue:
   def __repr__(self):
     return str(self.tasks)
 
+#My reference
 '''Main = Queue()
 
-@Main.event([1,2,3])
-async def printer(a):
+@Main.event([4,5,6])
+async def timer(a):
     print(a)
-    if a == 3:
-        raise ValueError
-    if a == 2:
-        import os
-        os.system('open -a Spotify')
+    if a == 4 or a == 5:
+        await asyncio.sleep(0.1)
+    else:
+        await asyncio.sleep(2)
+    print(str(a) + 'NEXT')
+    await asyncio.sleep(0.1)
 
 @Main.event([])
-async def printee():
-    print('Hello World!')
+async def printer(a=9):
+    for i in range(3):
+        print(a)
+        await asyncio.sleep(0.1)
 
-Main.argrun()
-
-@Main.task
+@Main.event([])
 async def helloWorld():
-    print('HELLO WORLD')
+    for i in range(3):
+        print("Hello World!")
+        await asyncio.sleep(0.1)
 
-Main.run()'''
+@Main.event([])
+async def anotherOne():
+    for i in range(3):
+        print("I'm running concurrently!")
+        await asyncio.sleep(0.1)
+
+Main.argrun()'''
