@@ -16,22 +16,10 @@ class Frame:
 
         self.tasks: List[Callable[[], Awaitable[None]]] = []
 
-        self.argtasks: List[Callable[[], Awaitable[None]]] = []
-
-        self.argus = []
-
         self._running_tasks: List[asyncio.Future[Any]] = []
 
     def task(self, func: Callable[[], Awaitable[None]]) -> None:
         self.tasks.append(func)
-
-    def argtask(self, func: Callable[[], Awaitable[None]],  *args):
-        self.argtasks.append(func)
-        try:
-            for arg in args:
-                self.argus.append(arg)
-        except:
-            self.argus.append([])
 
     async def start_tasks(self) -> None:
         runem = []
@@ -42,14 +30,6 @@ class Frame:
             t = self.loop.create_task(func())
             self._running_tasks.append(t)'''
 
-    async def arg_start(self):
-        runim = []
-        for j in range(len(self.tasks)):
-            try:
-                for i in self.argus[j]:
-                    runim.append(self.argtasks[j](i))
-            except:
-                runim.append(self.argtasks[j]())
 
     def stop_tasks(self) -> None:
         for t in self._running_tasks:
@@ -68,14 +48,6 @@ class Queue(Frame):
         finally:
             self.loop.run_until_complete(self.stop())
     
-    def argrun(self):
-        try:
-            self.loop.run_until_complete(self.arg_start())
-        except KeyboardInterrupt:
-            pass
-        finally:
-            self.loop.run_until_complete(self.stop())
-
     async def stop(self) -> None:
         self.stop_tasks()
         exit(-1)
