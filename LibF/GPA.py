@@ -118,7 +118,7 @@ class SyncQueue:
     return str(self.tasks)
 
 #My reference
-Main = Queue()
+'''Main = Queue()
 
 @Main.event([4,5,6])
 async def timer(a):
@@ -163,4 +163,4 @@ async def anotherOne2():
         await asyncio.sleep(0.1)
 
 Main.argrun()
-Main.run()
+Main.run()'''
