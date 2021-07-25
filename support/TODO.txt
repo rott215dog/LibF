@@ -1,5 +1,2 @@
 #TODO
 Write GPA docs
-
-Future libraries / features:
-    - Enumerations / Switch / Case
