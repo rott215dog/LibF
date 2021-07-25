@@ -9,8 +9,6 @@ class Frame:
         loop: Optional[asyncio.AbstractEventLoop] = None
     ) -> None:
 
-        #self.loop = loop or asyncio.get_event_loop()
-
         self.loop = asyncio.new_event_loop()
         asyncio.set_event_loop(self.loop)
 
@@ -76,15 +74,9 @@ class Queue(Frame):
 
     async def start(self) -> None:
         await self.start_tasks()
-        #await self.main_loop()
     
     async def argstart(self) -> None:
         await self.arg_start()
-
-    async def main_loop(self) -> None:
-        while True:
-            await asyncio.sleep(0)
-
 
 class MTManager:
     def __init__(self):
@@ -97,7 +89,6 @@ MAN = MTManager()
 
 class SyncQueue:
 
-  #[(function, [cases])]
   def __init__(self):
     self.tasks = []
 
@@ -126,11 +117,8 @@ class SyncQueue:
   def __repr__(self):
     return str(self.tasks)
 
-def Kill(q):
-    asyncio.run(q.stop())
-
 #My reference
-'''Main = Queue()
+Main = Queue()
 
 @Main.event([4,5,6])
 async def timer(a):
@@ -160,7 +148,7 @@ async def anotherOne():
         print("I'm running concurrently!")
         await asyncio.sleep(0.1)
 
-Main.argrun()
+#Main.argrun()
 
 @Main.task
 async def helloWorld2():
@@ -174,6 +162,5 @@ async def anotherOne2():
         print("I'm running concurrently! 2")
         await asyncio.sleep(0.1)
 
+Main.argrun()
 Main.run()
-
-Kill(Main)'''
