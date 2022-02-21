@@ -6,7 +6,7 @@ setup(
   license='MIT',        # Chose a license from here: https://help.github.com/articles/licensing-a-repository
   description = 'Foundation',   # Give a short description about your library
   author = 'Dt',                   # Type in your name
-  author_email = 'mysteriomac616@gmail.com',      # Type in your E-Mail
+  author_email = '*****@*****',      # Type in your E-Mail
   url = 'https://github.com/rott215dog/LibF',   # Provide either the link to your github or to your website
   download_url = 'https://github.com/rott215dog/LibF/archive/refs/tags/v0.61.tar.gz',    # I explain this later on
   keywords = ['Async', 'Foundation'],   # Keywords that define your package best
