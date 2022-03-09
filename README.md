@@ -7,7 +7,6 @@ LibF is a foundational framework for Python to make programming simpler and fast
  - `Frac: Fractions` = A full-fledged fraction class
  - `HOF: Higher Order Functions` = A library of basic higher order functions and other useful functions
  - `Sort: Sorting` = A library with a few sorting algorithms
- - `PS: Publish & Subscribe` = A library for Publish-Subscribe style programming
 
 
 ## Notice:  
