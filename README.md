@@ -9,9 +9,6 @@ LibF is a foundational framework for Python to make programming simpler and fast
  - `Sort: Sorting` = A library with a few sorting algorithms
  - `PS: Publish & Subscribe` = A library for Publish-Subscribe style programming
 
-### Install:
- - `pip install LibF`
-
 
 ## Notice:  
 Part of the project's code is based on [CircuitSacul's](https://github.com/CircuitSacul) [SocketGame library](https://github.com/CircuitSacul/SocketGame).
